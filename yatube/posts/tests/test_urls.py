@@ -77,7 +77,7 @@ class PostURLTests(TestCase):
         """Страница 'create' перенаправляет анонимного пользователя."""
         response = self.guest_client.get(
             reverse('posts:post_create'), follow=True
-            )
+        )
         self.assertRedirects(response, "/auth/login/?next=/create/")
 
     def test_edit_url_redirect_non_author(self):
@@ -87,7 +87,7 @@ class PostURLTests(TestCase):
         """
         response = self.authorized_client.get(
             reverse('posts:post_create'), follow=True
-            )
+        )
         self.assertRedirects(
             response, reverse('posts:post_detail', args=[self.test_post.id])
-            )
+        )
