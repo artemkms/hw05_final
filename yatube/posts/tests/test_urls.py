@@ -35,7 +35,7 @@ class PostURLTests(TestCase):
 
     def test_urls_uses_correct_template(self):
         """URL-адрес использует соответствующий шаблон."""
-         templates_url_names = {
+        templates_url_names = {
             reverse('posts:index'): 'posts/index.html',
             reverse('posts:profile',
                     args=[self.test_author.username]):
@@ -75,7 +75,9 @@ class PostURLTests(TestCase):
 
     def test_create_url_redirect_anonymous(self):
         """Страница 'create' перенаправляет анонимного пользователя."""
-        response = self.guest_client.get(reverse('posts:post_create'), follow=True)
+        response = self.guest_client.get(
+            reverse('posts:post_create'), follow=True
+            )
         self.assertRedirects(response, "/auth/login/?next=/create/")
 
     def test_edit_url_redirect_non_author(self):
@@ -85,7 +87,7 @@ class PostURLTests(TestCase):
         """
         response = self.authorized_client.get(
             reverse('posts:post_create'), follow=True
-        )
+            )
         self.assertRedirects(
             response, reverse('posts:post_detail', args=[self.test_post.id])
             )
