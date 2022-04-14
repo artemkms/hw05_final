@@ -45,6 +45,7 @@ class PostURLTests(TestCase):
             reverse('posts:post_create'): 'posts/create.html',
             reverse('posts:post_edit', args=[self.test_post.id]):
             'posts/create.html',
+            "/unexisting_page/": "core/404.html",
         }
         for adress, template in templates_url_names.items():
             with self.subTest(adress=adress):
