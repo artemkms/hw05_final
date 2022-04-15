@@ -86,7 +86,7 @@ class PostURLTests(TestCase):
         пользователя (не автора поста).
         """
         response = self.authorized_client.get(
-            f"/posts/{self.test_post.id}/edit/", follow=True
+            reverse('posts:post_edit', args=[self.test_post.id]), follow=True
         )
         self.assertRedirects(
             response, reverse('posts:post_detail', args=[self.test_post.id])
